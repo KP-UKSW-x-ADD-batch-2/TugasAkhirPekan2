@@ -5,6 +5,7 @@
  */
 package controllers;
 
+<<<<<<< HEAD
 import controllers.icontrollers.IRegionController;
 import daos.RegionDAO;
 import daos.idaos.IRegionDAO;
@@ -12,10 +13,13 @@ import java.util.List;
 import models.Region;
 import org.hibernate.SessionFactory;
 
+=======
+>>>>>>> master
 /**
  *
  * @author Yosef Febrianes
  */
+<<<<<<< HEAD
 public class RegionController implements IRegionController {
 
     private IRegionDAO irdao;
@@ -68,4 +72,8 @@ public class RegionController implements IRegionController {
         }
     }
 
+=======
+public class RegionController {
+    
+>>>>>>> master
 }

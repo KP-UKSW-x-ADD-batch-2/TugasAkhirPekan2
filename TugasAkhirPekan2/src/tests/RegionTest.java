@@ -10,7 +10,10 @@ import daos.idaos.IRegionDAO;
 import java.util.List;
 import java.util.Scanner;
 import models.Region;
+<<<<<<< HEAD
 import org.hibernate.SessionFactory;
+=======
+>>>>>>> master
 import tools.HibernateUtil;
 
 /**
@@ -18,16 +21,26 @@ import tools.HibernateUtil;
  * @author Yosef Febrianes
  */
 public class RegionTest {
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> master
     HibernateUtil sessionFactory = new HibernateUtil();
     IRegionDAO irdao = new RegionDAO(sessionFactory.getSessionFactory());
     Scanner scann = new Scanner(System.in);
     Region r = new Region();
+<<<<<<< HEAD
     SessionFactory factory = new HibernateUtil().getSessionFactory();
     RegionDAO rdao = new RegionDAO(factory);
     
     public static void main(String[] args) {
         
+=======
+
+    public static void main(String[] args) {
+
+>>>>>>> master
         RegionTest r = new RegionTest();
         Scanner scann = new Scanner(System.in);
         int lanjut = 0;
@@ -40,7 +53,11 @@ public class RegionTest {
             System.out.println("6 = GetById");
             System.out.print("pilih mana? = ");
             int a = scann.nextInt();
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> master
             switch (a) {
                 case 1:
                     r.getAll();
@@ -63,20 +80,31 @@ public class RegionTest {
                 default:
                     System.out.println("Pilih yang benar!");
                     break;
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> master
             }
             System.out.println("lagi? ");
             lanjut = scann.nextInt();
         } while (lanjut == 1);
+<<<<<<< HEAD
         
     }
     
+=======
+
+    }
+
+>>>>>>> master
     void getAll() {
         List<Region> regions = irdao.getAll();
         for (Region data : regions) {
             System.out.println(data.getId() + " " + data.getName() + "-" + data.getCountryList().size());
         }
     }
+<<<<<<< HEAD
     
     void insert() {
         
@@ -125,4 +153,27 @@ public class RegionTest {
         System.out.println(reg.getId() + " - " + reg.getName());
     }
     
+=======
+
+    void insert() {
+
+    }
+
+    void update() {
+
+    }
+
+    void delete() {
+
+    }
+
+    void search() {
+
+    }
+
+    void getById() {
+
+    }
+
+>>>>>>> master
 }
