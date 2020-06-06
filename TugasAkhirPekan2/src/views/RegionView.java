@@ -28,10 +28,10 @@ public class RegionView extends javax.swing.JFrame {
      */
     public RegionView() {
         initComponents();
-        tampil();
+        getAll();
     }
 
-    void tampil() {
+    void getAll() {
         HibernateUtil sessionFactory = new HibernateUtil();
         IRegionController irc = new RegionController(sessionFactory.getSessionFactory());
         IRegionDAO irdao = new RegionDAO(sessionFactory.getSessionFactory());
@@ -67,12 +67,11 @@ public class RegionView extends javax.swing.JFrame {
 
     }
 
-    private void searching() {
+    private void search() {
         HibernateUtil sessionFactory = new HibernateUtil();
         IRegionController irc = new RegionController(sessionFactory.getSessionFactory());
         IRegionDAO irdao = new RegionDAO(sessionFactory.getSessionFactory());
         Region regionn = new Region(searchButton.getText());
-        Region regionnn = new Region();
 
 //        Region r = new Region();
         DefaultTableModel dt;
@@ -81,18 +80,17 @@ public class RegionView extends javax.swing.JFrame {
         Object[] baris = {"Region ID", "Region Name"};
         dt = new DefaultTableModel(null, baris);
         regionTable.setModel(dt);
-//        String id = "R002";
 
         try {
-                irdao.getById(searchField.getText());
-//            for (Region regiong : irdao.getById(searchField.getText())) {
+            for (Region regiong : irdao.search(searchField.getText())) {
+//                System.out.println(regiong.getRegionId() + " || " + regiong.getRegionName());
 
-                String ID = regionnn.getId();
-                String NM = regionnn.getName();
+                String ID = regiong.getId();
+                String NM = regiong.getName();
 
                 String[] data = {ID, NM};
                 dt.addRow(data);
-//            }
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -318,40 +316,42 @@ public class RegionView extends javax.swing.JFrame {
 //        Region region = new Region(regionIdField.getText(), regionNameField.getText());
 
         JOptionPane.showMessageDialog(null, irc.update(regionIdField.getText(), regionNameField.getText()));
-
         regionIdField.setText("");
         regionNameField.setText("");
-        tampil();
+        getAll();
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
+
         HibernateUtil sessionFactory = new HibernateUtil();
         IRegionController irc = new RegionController(sessionFactory.getSessionFactory());
-//        Region region = new Region(regionIdField.getText(), regionNameField.getText());
+        Region region = new Region(regionIdField.getText(), regionNameField.getText());
 
+        //    public String insert (String regionId, String regionName);
         JOptionPane.showMessageDialog(null, irc.insert(regionIdField.getText(), regionNameField.getText()));
-
+        SwingUtilities.updateComponentTreeUI(insertButton);
         regionIdField.setText("");
         regionNameField.setText("");
-        tampil();
+        getAll();
     }//GEN-LAST:event_insertButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         HibernateUtil sessionFactory = new HibernateUtil();
         IRegionController irc = new RegionController(sessionFactory.getSessionFactory());
-//        Region region = new Region(regionIdField.getText(), regionNameField.getText());
+        Region region = new Region(regionIdField.getText(), regionNameField.getText());
 
         int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(this, "are you sure want to delete?", "delete confirm dialog", dialogButton);
+        int dialogResult = JOptionPane.showConfirmDialog(this, "Delete", "Title on Box", dialogButton);
         if (dialogResult == 0) {
             Region regionn = new Region(regionIdField.getText(), regionNameField.getText());
+            //        confirmDelete("wkwk");
 
-            JOptionPane.showMessageDialog(null, irc.delete(regionn.getId()));
+            JOptionPane.showMessageDialog(null, irc.delete(regionIdField.getText()));
             regionIdField.setText("");
             regionNameField.setText("");
-            tampil();
+            getAll();
         } else {
-            tampil();
+            getAll();
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -360,14 +360,12 @@ public class RegionView extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        searching();
+        search();
         searchField.setText("");
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
-        tampil();
-        //        revalidate();
-        //        repaint();
+        getAll();
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void regionTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regionTableMouseClicked

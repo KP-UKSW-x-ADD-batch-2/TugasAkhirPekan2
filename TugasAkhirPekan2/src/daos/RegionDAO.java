@@ -8,7 +8,6 @@ package daos;
 import daos.idaos.IRegionDAO;
 import java.util.ArrayList;
 import java.util.List;
-import models.Country;
 import models.Region;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -63,26 +62,28 @@ public class RegionDAO implements IRegionDAO {
             }
         }
         return region;
+
     }
 
     @Override
     public List<Region> search(Object keyword) {
-        List<Region> region = new ArrayList<>();
+        List<Region> regions = new ArrayList<>();
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-
-            String hql = "FROM Region WHERE id LIKE '%a%' OR name LIKE '%a%'";                  //SELECT * FROM `countries` WHERE countries.country_name LIKE '%1%' OR countries.country_id LIKE '%1%'
+            String hql = "FROM Region WHERE id LIKE '%a%' OR name LIKE '%a%'";      //SELECT * FROM `regions` WHERE id LIKE '%s%' OR name LIKE '%s%'
+//            String hql = "FROM Region WHERE region = :a";
             Query query = session.createQuery(hql);
             query.setParameter("a", keyword);
-            region = session.createQuery(hql).list();
+            regions = session.createQuery(hql).list();
+//            regions = (Region) query.list();
         } catch (Exception e) {
             e.printStackTrace();
             if (transaction != null) {
                 transaction.rollback();
             }
         }
-        return region;
+        return regions;
     }
 
     @Override
@@ -130,10 +131,11 @@ public class RegionDAO implements IRegionDAO {
         boolean result = false;
         session = this.factory.openSession();
         transaction = session.beginTransaction();
+
         try {
-//            session.delete(id);
             Region region = (Region) session.load(Region.class, id);
             session.delete(region);
+//            session.delete(new Region(id));
             transaction.commit();
             result = true;
         } catch (Exception e) {

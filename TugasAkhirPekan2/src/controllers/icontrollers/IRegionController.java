@@ -16,13 +16,13 @@ public interface IRegionController {
 
     public List<Region> getAll();
 
-    public Region getById(String id);
-
     public List<Region> search(Object keyword);
 
-    public String insert(String id, String name);
+    public Region getById(String regionId);
 
-    public String update(String id, String name);
+    public String insert(String regionId, String regionName);
 
-    public String delete(String id);
+    public String update(String regionId, String regionName);
+
+    public String delete(String regionId);
 }

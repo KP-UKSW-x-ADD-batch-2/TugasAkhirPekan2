@@ -10,7 +10,6 @@ import daos.RegionDAO;
 import daos.idaos.IRegionDAO;
 import java.util.List;
 import models.Region;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
@@ -31,42 +30,41 @@ public class RegionController implements IRegionController {
     }
 
     @Override
-    public Region getById(String id) {
-        return irdao.getById(id);
-    }
-
-    @Override
     public List<Region> search(Object keyword) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String insert(String id, String name) {
-        Region rr = new Region(id, name);
-        if (irdao.insert(rr)) {
-            return "Insert Success!";
+    public Region getById(String regionId) {
+        return irdao.getById(regionId);
+    }
+
+    @Override
+    public String insert(String regionId, String regionName) {
+        Region reg = new Region(regionId, regionName);
+        if (irdao.insert(reg)) {
+            return "Insert "+regionId+" success!";
         } else {
-            return "Insert Success!";
+            return "Insert "+regionId+" failed!";
         }
     }
 
     @Override
-    public String update(String id, String name) {
-            Region rr = new Region(id, name);
-        if (irdao.update(rr)) {
-            return "Update Success!";
+    public String update(String regionId, String regionName) {
+        Region reg = new Region(regionId, regionName);
+        if (irdao.update(reg)) {
+            return "Update "+regionId+" success!";
         } else {
-            return "Update Success!";
-        }    
+            return "Update "+regionId+" failed";
+        }
     }
 
     @Override
-    public String delete(String id) {
-        Region rr = new Region(id);
-        if (irdao.delete(id)) {
-            return "Delete "+id+" Success!";
+    public String delete(String regionId) {
+        if (irdao.delete(regionId)) {
+            return "Delete "+regionId+" success!";
         } else {
-            return "Delete "+id+" Success!";
+            return "Delete "+regionId+" failed";
         }
     }
 
