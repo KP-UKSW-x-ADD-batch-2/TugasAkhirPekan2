@@ -51,11 +51,8 @@ public class RegionDAO implements IRegionDAO {
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-<<<<<<< HEAD
             String hql = "FROM Region WHERE Id = :a";
-=======
-            String hql = "FROM Region WHERE regionId = :a";
->>>>>>> master
+//            String hql = "FROM Region WHERE regionId = :a";
             Query query = session.createQuery(hql);
             query.setParameter("a", id);
             region = (Region) query.uniqueResult();
@@ -75,19 +72,16 @@ public class RegionDAO implements IRegionDAO {
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-<<<<<<< HEAD
+
             String hql = "FROM Region WHERE id LIKE '%a%' OR name LIKE '%a%'";      //SELECT * FROM `regions` WHERE id LIKE '%s%' OR name LIKE '%s%'
 //            String hql = "FROM Region WHERE region = :a";
             Query query = session.createQuery(hql);
             query.setParameter("a", keyword);
             regions = session.createQuery(hql).list();
 //            regions = (Region) query.list();
-=======
-            String hql = "FROM Region WHERE region = :a";
-            Query query = session.createQuery(hql);
+
             query.setParameter("a", keyword);
 //            countries = (Country) query.list();
->>>>>>> master
         } catch (Exception e) {
             e.printStackTrace();
             if (transaction != null) {
@@ -160,8 +154,4 @@ public class RegionDAO implements IRegionDAO {
         return result;
     }
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master

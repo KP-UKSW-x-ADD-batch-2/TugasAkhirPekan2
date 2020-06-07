@@ -5,18 +5,14 @@
  */
 package controllers.icontrollers;
 
-<<<<<<< HEAD
 import java.util.List;
 import models.Region;
 
-=======
->>>>>>> master
 /**
  *
  * @author Yosef Febrianes
  */
 public interface IRegionController {
-<<<<<<< HEAD
 
     public List<Region> getAll();
 
@@ -29,7 +25,5 @@ public interface IRegionController {
     public String update(String regionId, String regionName);
 
     public String delete(String regionId);
-=======
-    
->>>>>>> master
+
 }
