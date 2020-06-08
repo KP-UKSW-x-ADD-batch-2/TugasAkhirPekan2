@@ -33,9 +33,12 @@ public class RegisterView extends javax.swing.JFrame {
         passwordField = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         usernameField = new javax.swing.JTextField();
+        usernameField1 = new javax.swing.JTextField();
+        passwordField2 = new javax.swing.JPasswordField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        passwordField1 = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -51,37 +54,49 @@ public class RegisterView extends javax.swing.JFrame {
         });
         jPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, 70, 30));
 
-        loginButton.setText("LOGIN");
+        loginButton.setText("REGISTER");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 110, 30));
-        jPanel1.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 210, 30));
+        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 110, 30));
+        jPanel1.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 210, 30));
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("password");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 70, 30));
-        jPanel1.add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 210, 30));
+        jLabel2.setText("Confirm password :");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 140, 30));
+        jPanel1.add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 210, 30));
+        jPanel1.add(usernameField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 210, 30));
+        jPanel1.add(passwordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 210, 30));
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/views/icons8-account-100.png"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 110, 110));
+
+        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("password :");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 90, 30));
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("REGISTER");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 210, 60));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 210, 60));
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("username");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 70, 30));
-        jPanel1.add(passwordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 210, 30));
+        jLabel4.setText("username :");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 100, 30));
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Employee ID");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 100, 30));
+        jLabel5.setText("Employee ID :");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 100, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Yosef Febrianes\\Desktop\\TugasAkhirPekan2\\qaz2.jpg")); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 617, -1));
@@ -153,11 +168,14 @@ public class RegisterView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loginButton;
     private javax.swing.JPasswordField passwordField;
-    private javax.swing.JPasswordField passwordField1;
+    private javax.swing.JPasswordField passwordField2;
     private javax.swing.JButton registerButton;
     private javax.swing.JTextField usernameField;
+    private javax.swing.JTextField usernameField1;
     // End of variables declaration//GEN-END:variables
 }

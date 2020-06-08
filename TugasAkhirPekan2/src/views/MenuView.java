@@ -66,7 +66,7 @@ public class MenuView extends javax.swing.JFrame {
                 regionButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(regionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, 210, 50));
+        getContentPane().add(regionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 630, 210, 50));
 
         locationsButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         locationsButton.setText("LOCATIONS");
@@ -75,7 +75,7 @@ public class MenuView extends javax.swing.JFrame {
                 locationsButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(locationsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 560, 210, 50));
+        getContentPane().add(locationsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 630, 210, 50));
 
         jobsButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jobsButton.setText("JOBS");
@@ -84,7 +84,7 @@ public class MenuView extends javax.swing.JFrame {
                 jobsButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jobsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 560, 210, 50));
+        getContentPane().add(jobsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 630, 210, 50));
 
         employeesButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         employeesButton.setText("EMPLOYEES");
@@ -93,7 +93,7 @@ public class MenuView extends javax.swing.JFrame {
                 employeesButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(employeesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 560, 210, 50));
+        getContentPane().add(employeesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 630, 210, 50));
 
         departementsButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         departementsButton.setText("DEPARTEMENTS");
@@ -102,7 +102,7 @@ public class MenuView extends javax.swing.JFrame {
                 departementsButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(departementsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 560, 210, 50));
+        getContentPane().add(departementsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 630, 210, 50));
 
         contriesButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         contriesButton.setText("CONTRIES");
@@ -111,28 +111,28 @@ public class MenuView extends javax.swing.JFrame {
                 contriesButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(contriesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 560, 210, 50));
+        getContentPane().add(contriesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 630, 210, 50));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 51));
         jLabel2.setFont(new java.awt.Font("Corbel Light", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("KP_UKSW_Batch2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, 300, 1370, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 1370, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 51));
         jLabel3.setFont(new java.awt.Font("Courier New", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("PT. Metrodata Electronics, Tbk");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 1370, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 1370, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 51));
         jLabel5.setFont(new java.awt.Font("Corbel Light", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("tugas akhir pekan 2");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 1360, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 1360, -1));
 
         jButton2.setText("back to login");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
