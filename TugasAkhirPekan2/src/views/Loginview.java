@@ -5,6 +5,10 @@
  */
 package views;
 
+import models.Account;
+import org.hibernate.hql.internal.ast.tree.Statement;
+import tools.HibernateUtil;
+
 /**
  *
  * @author Yosef Febrianes
@@ -87,12 +91,23 @@ public class Loginview extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
+        
+        HibernateUtil sessionFactory = new HibernateUtil();
+        Account ac = new Account(usernameField.getText(), passwordField.getText());
+        
+        if (rootPaneCheckingEnabled) {
+            
+        }
+        
         MenuView mv = new MenuView();
         mv.setVisible(true);
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         // TODO add your handling code here:
+        RegisterView rv = new RegisterView();
+        rv.setVisible(true);
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**

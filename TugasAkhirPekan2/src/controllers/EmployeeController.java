@@ -8,8 +8,12 @@ package controllers;
 import controllers.icontrollers.IEmployeeController;
 import daos.EmployeeDAO;
 import daos.idaos.IEmployeeDAO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Departement;
 import models.Employee;
 import models.Job;
@@ -44,22 +48,32 @@ public class EmployeeController implements IEmployeeController {
 
     @Override
     public String insert(String employeeId, String firstName, String lastName, String email, String phoneNumber, String hireDate, String job, String salary, String commisionPct, String manager, String departement) {
-        Employee reg = new Employee(
-                employeeId,
-                firstName,
-                lastName,
-                email,
-                phoneNumber,
-                new Date(hireDate),
-                new Job(job),
-                Integer.parseInt(salary),
-                Float.parseFloat(commisionPct),
-                new Employee(manager), new Departement(departement));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = format.parse(hireDate);
+            Employee reg = new Employee(
+                    employeeId,
+                    firstName,
+                    lastName,
+                    email,
+                    phoneNumber,
+                    date,
+                    new Job(job),
+                    Integer.parseInt(salary),
+                    Float.parseFloat(commisionPct),
+                    new Employee(manager), 
+                    new Departement(departement));
+            
         if (iedao.insert(reg)) {
             return "Insert " + employeeId + " success!";
         } else {
             return "Insert " + employeeId + " failed!";
         }
+        } catch (ParseException ex) {
+            Logger.getLogger(EmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return "";
     }
 
     @Override
@@ -73,22 +87,32 @@ public class EmployeeController implements IEmployeeController {
 
     @Override
     public String update(String employeeId, String firstName, String lastName, String email, String phoneNumber, String hireDate, String job, String salary, String commisionPct, String manager, String departement) {
-        Employee reg = new Employee(
-                employeeId,
-                firstName,
-                lastName,
-                email,
-                phoneNumber,
-                new Date(hireDate),
-                new Job(job),
-                Integer.parseInt(salary),
-                Float.parseFloat(commisionPct),
-                new Employee(manager), new Departement(departement));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = format.parse(hireDate);
+            Employee reg = new Employee(
+                    employeeId,
+                    firstName,
+                    lastName,
+                    email,
+                    phoneNumber,
+                    date,
+                    new Job(job),
+                    Integer.parseInt(salary),
+                    Float.parseFloat(commisionPct),
+                    new Employee(manager), 
+                    new Departement(departement));
+            
         if (iedao.update(reg)) {
             return "Update " + employeeId + " success!";
         } else {
             return "Update " + employeeId + " failed!";
         }
+        } catch (ParseException ex) {
+            Logger.getLogger(EmployeeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return "";
     }
 
 }

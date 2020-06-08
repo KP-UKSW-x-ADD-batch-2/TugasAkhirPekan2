@@ -88,6 +88,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 
     @Override
     public boolean insert(Employee employee) {
+        
         boolean result = false;
         session = this.factory.openSession();
         transaction = session.beginTransaction();
