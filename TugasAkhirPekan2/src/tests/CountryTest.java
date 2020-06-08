@@ -16,7 +16,7 @@ import tools.HibernateUtil;
 
 /**
  *
- * @author Yosef Febrianes
+ * @author User
  */
 public class CountryTest {
     
@@ -128,6 +128,7 @@ public class CountryTest {
         
         Country data = cdao.getById(id);
         System.out.println(data.getId() +" - "+ data.getName() +" - "+ data.getRegion().getId());
+
     }
     
 }

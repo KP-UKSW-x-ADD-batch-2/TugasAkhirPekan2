@@ -16,7 +16,7 @@ import org.hibernate.SessionFactory;
 
 /**
  *
- * @author Yosef Febrianes
+ * @author User
  */
 public class CountryController implements ICountryController {
 

@@ -10,7 +10,7 @@ import models.Country;
 
 /**
  *
- * @author Yosef Febrianes
+ * @author User
  */
 public interface ICountryDAO {
     
@@ -25,4 +25,5 @@ public interface ICountryDAO {
     public boolean update(Country country);
 
     public boolean delete(String id);
+
 }

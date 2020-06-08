@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package controllers.icontrollers;
-
 import java.util.List;
 import models.Country;
 import models.Region;
 
 /**
  *
- * @author Yosef Febrianes
+ * @author User
  */
 public interface ICountryController {
 
@@ -26,4 +25,5 @@ public interface ICountryController {
     public String update(String countryId, String countryName, Region regionId);
 
     public String delete(String countryId);
+
 }

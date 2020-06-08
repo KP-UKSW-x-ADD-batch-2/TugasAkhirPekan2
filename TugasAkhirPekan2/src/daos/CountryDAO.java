@@ -16,7 +16,7 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author Yosef Febrianes
+ * @author User
  */
 public class CountryDAO implements ICountryDAO {
 
@@ -148,4 +148,5 @@ public class CountryDAO implements ICountryDAO {
         }
         return result;
     }
+
 }
