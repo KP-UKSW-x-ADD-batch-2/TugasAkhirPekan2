@@ -41,7 +41,6 @@ public class EmployeeView extends javax.swing.JFrame {
     void tampil() {
         HibernateUtil sessionFactory = new HibernateUtil();
         IEmployeeController iec = new EmployeeController(sessionFactory.getSessionFactory());
-        IEmployeeDAO iedao = new EmployeeDAO(sessionFactory.getSessionFactory());
 
         DefaultTableModel dt;
         DefaultButtonModel db;
@@ -56,16 +55,6 @@ public class EmployeeView extends javax.swing.JFrame {
         emailField.setText("");
         phoneNumberField.setText("");
         hireDateField.setText("");
-
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        String date = sdf.format(hireDateChooser.getDate());
-//        pst.setString(date);
-////////////////////
-//String isoDatePattern = "yyyy-MM-dd'T'HH:mm:ss'Z'";
-//
-//SimpleDateFormat simpleDateFormat = new SimpleDateFormat(isoDatePattern);
-//
-//String dateString = simpleDateFormat.format(new Date());
         jobIdBox.setSelectedItem(null);
         salaryField.setText("");
         commisionPctField.setText("");
@@ -74,7 +63,7 @@ public class EmployeeView extends javax.swing.JFrame {
 
         try {
             int i = 1;
-            for (Employee empliong : iedao.getAll()) {
+            for (Employee empliong : iec.getAll()) {
 //                System.out.println(regiong.getRegionId() + " || " + regiong.getRegionName());
 
                 String NO = Integer.toString(i);
@@ -87,7 +76,7 @@ public class EmployeeView extends javax.swing.JFrame {
                 String JI = empliong.getJob().getId();
                 String S = empliong.getSalary() + "";
                 String CP = empliong.getCommisionPct() + "";
-                String MI = empliong.getManager().getFirstName();
+                String MI = empliong.getManager().getId();
                 String DI = empliong.getDepartement().getId();
 
                 String[] data = {NO, ID, FN, LN, E, PN, HD, JI, S, CP, MI, DI};
@@ -97,6 +86,55 @@ public class EmployeeView extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
+
+    }
+
+    private void getById() {
+//        HibernateUtil sessionFactory = new HibernateUtil();
+//        IEmployeeController iec = new EmployeeController(sessionFactory.getSessionFactory());
+//
+//        DefaultTableModel dt;
+//        DefaultButtonModel db;
+//        Object[] baris = {"No", "ID", "First Name", "Last Name", "Email", "Phone Number", "Hire Date", "Job", "Salary", "Commision", "Manager", "Departement"};
+//        dt = new DefaultTableModel(null, baris);
+//        employeeTable.setModel(dt);
+//        employeeIdField.setEditable(true);
+//
+//        employeeIdField.setText("");
+//        firstNameField.setText("");
+//        lastNameField.setText("");
+//        emailField.setText("");
+//        phoneNumberField.setText("");
+//        hireDateField.setText("");
+//        jobIdBox.setSelectedItem(null);
+//        salaryField.setText("");
+//        commisionPctField.setText("");
+//        managerIdBox.setSelectedItem(null);
+//        departementIdBox.setSelectedItem(null);
+//
+//        try {
+//                iec.getById(employeeIdField.getText());
+////                System.out.println(regiong.getRegionId() + " || " + regiong.getRegionName());
+//        Employee empliong = new Employee(id, firstName, lastName, email, phoneNumber, hireDate, job, ABORT, TOP_ALIGNMENT, manager, departement);
+//
+//                String ID = empliong.getId();
+//                String FN = empliong.getFirstName();
+//                String LN = empliong.getLastName();
+//                String E = empliong.getEmail();
+//                String PN = empliong.getPhoneNumber();
+//                String HD = empliong.getHireDate() + "";
+//                String JI = empliong.getJob().getId();
+//                String S = empliong.getSalary() + "";
+//                String CP = empliong.getCommisionPct() + "";
+//                String MI = empliong.getManager().getId();
+//                String DI = empliong.getDepartement().getId();
+//
+//                String[] data = {ID, FN, LN, E, PN, HD, JI, S, CP, MI, DI};
+//                dt.addRow(data);
+//            
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
+//        }
 
     }
 
@@ -139,10 +177,13 @@ public class EmployeeView extends javax.swing.JFrame {
         deleteButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         insertButton = new javax.swing.JButton();
+        searchField = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(240, 18, 65));
+        jPanel1.setBackground(new java.awt.Color(9, 87, 113));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         employeeTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         employeeTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -165,7 +206,9 @@ public class EmployeeView extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(employeeTable);
 
-        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 98, 1080, 478));
+
+        jPanel3.setBackground(new java.awt.Color(3, 18, 35));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -362,12 +405,15 @@ public class EmployeeView extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 11, -1, -1));
+
         refreshButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Yosef Febrianes\\Downloads\\icons8-refresh-26.png")); // NOI18N
         refreshButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(refreshButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(724, 594, 50, 40));
 
         deleteButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         deleteButton.setText("DELETE");
@@ -376,6 +422,7 @@ public class EmployeeView extends javax.swing.JFrame {
                 deleteButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(584, 594, 120, 40));
 
         updateButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         updateButton.setText("UPDATE");
@@ -384,6 +431,7 @@ public class EmployeeView extends javax.swing.JFrame {
                 updateButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 594, 120, 40));
 
         insertButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         insertButton.setText("INSERT");
@@ -392,47 +440,22 @@ public class EmployeeView extends javax.swing.JFrame {
                 insertButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(insertButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 594, 120, 40));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1099, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(insertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        searchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 60, 180, 30));
+
+        searchButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Yosef Febrianes\\Downloads\\icons8-search-20.png")); // NOI18N
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 60, 30, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -464,7 +487,7 @@ public class EmployeeView extends javax.swing.JFrame {
                 commisionPctField.getText(),
                 managerIdBox.getSelectedItem().toString(),
                 departementIdBox.getSelectedItem().toString()));
-        
+
         SwingUtilities.updateComponentTreeUI(insertButton);
 
         employeeIdField.setText("");
@@ -483,56 +506,66 @@ public class EmployeeView extends javax.swing.JFrame {
     }//GEN-LAST:event_insertButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        //        HibernateUtil sessionFactory = new HibernateUtil();
-        //        IEmployeeController iec = new EmployeeController(sessionFactory.getSessionFactory());
-        //        Employee employee = new Employee(employeeIdField.getText(),
-        //        //        regionIdField.setEditable(false);
-        //        Employee location = new Employee(employeeIdField.getText(), firstNameField.getText(), lastNameField.getText(), emailField.getText(), phoneNumberField.getText(), hireDateField.getText(), jobIdBox.getSelectedItem()+"", salaryField.getText(), commisionPctField.getText(), managerIdBox.getSelectedItem()+"", departementIdBox.getSelectedItem()+"");
-        //
-        //        JOptionPane.showMessageDialog(null, iec.update(location));
-        //
-        //        employeeIdField.setText("");
-        //        firstNameField.setText("");
-        //        lastNameField.setText("");
-        //        emailField.setText("");
-        //        phoneNumberField.setText("");
-        //        hireDateField.setText("");
-        //        jobIdBox.setSelectedItem(null);
-        //        salaryField.setText("");
-        //        commisionPctField.setText("");
-        //        managerIdBox.setSelectedItem(null);
-        //        departementIdBox.setSelectedItem(null);
-        //
-        //        tampil();
+        HibernateUtil sessionFactory = new HibernateUtil();
+        IEmployeeController iec = new EmployeeController(sessionFactory.getSessionFactory());
+
+        JOptionPane.showMessageDialog(null, iec.update(
+                employeeIdField.getText(),
+                firstNameField.getText(),
+                lastNameField.getText(),
+                emailField.getText(),
+                phoneNumberField.getText(),
+                hireDateField.getText(),
+                jobIdBox.getSelectedItem().toString(),
+                salaryField.getText(),
+                commisionPctField.getText(),
+                managerIdBox.getSelectedItem().toString(),
+                departementIdBox.getSelectedItem().toString()));
+
+        SwingUtilities.updateComponentTreeUI(insertButton);
+
+        employeeIdField.setText("");
+        firstNameField.setText("");
+        lastNameField.setText("");
+        emailField.setText("");
+        phoneNumberField.setText("");
+        hireDateField.setText("");
+        jobIdBox.setSelectedItem(null);
+        salaryField.setText("");
+        commisionPctField.setText("");
+        managerIdBox.setSelectedItem(null);
+        departementIdBox.setSelectedItem(null);
+
+        tampil();
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        //        DbConnection connection = new DbConnection();
-        //        IEmployeeController iec = new EmployeeController(connection.getConnection());
-        //        //setText(source.getModel().getValueAt(row, column));
-        //        int dialogButton = JOptionPane.YES_NO_OPTION;
-        //        int dialogResult = JOptionPane.showConfirmDialog(this, "Delete", "Title on Box", dialogButton);
-        //        if (dialogResult == 0) {
-        //            Employee location = new Employee(employeeIdField.getText(), firstNameField.getText(), lastNameField.getText(), emailField.getText(), phoneNumberField.getText(), hireDateField.getText(), jobIdBox.getSelectedItem()+"", salaryField.getText(), commisionPctField.getText(), managerIdBox.getSelectedItem()+"", departementIdBox.getSelectedItem()+"");
-        //
-        //            JOptionPane.showMessageDialog(null, iec.delete(location.getEmployeeId()));
-        //
-        //            employeeIdField.setText("");
-        //            firstNameField.setText("");
-        //            lastNameField.setText("");
-        //            emailField.setText("");
-        //            phoneNumberField.setText("");
-        //            hireDateField.setText("");
-        //            jobIdBox.setSelectedItem(null);
-        //            salaryField.setText("");
-        //            commisionPctField.setText("");
-        //            managerIdBox.setSelectedItem(null);
-        //            departementIdBox.setSelectedItem(null);
-        //
-        //            tampil();
-        //        } else {
-        //            tampil();
-        //        }
+        HibernateUtil sessionFactory = new HibernateUtil();
+        IEmployeeController iec = new EmployeeController(sessionFactory.getSessionFactory());
+        //setText(source.getModel().getValueAt(row, column));
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(this, "Delete", "Title on Box", dialogButton);
+        if (dialogResult == 0) {
+            Employee location = new Employee(employeeIdField.getText());
+
+            JOptionPane.showMessageDialog(null, iec.delete(location.getId()));
+
+            employeeIdField.setText("");
+            firstNameField.setText("");
+            lastNameField.setText("");
+            emailField.setText("");
+            phoneNumberField.setText("");
+            hireDateField.setText("");
+            jobIdBox.setSelectedItem(null);
+            salaryField.setText("");
+            commisionPctField.setText("");
+            managerIdBox.setSelectedItem(null);
+            departementIdBox.setSelectedItem(null);
+
+            tampil();
+        } else {
+            tampil();
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
@@ -679,6 +712,15 @@ public class EmployeeView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_employeeTableMouseClicked
 
+    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchFieldActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        getById();
+        searchField.setText("");
+    }//GEN-LAST:event_searchButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -744,6 +786,8 @@ public class EmployeeView extends javax.swing.JFrame {
     private javax.swing.JTextField phoneNumberField;
     private javax.swing.JButton refreshButton;
     private javax.swing.JTextField salaryField;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchField;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

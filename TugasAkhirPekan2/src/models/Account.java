@@ -59,6 +59,17 @@ public class Account implements Serializable {
         this.username = username;
         this.password = password;
     }
+    
+    public Account(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+    
+    public Account(Employee employee, String username, String password) {
+        this.employee = employee;
+        this.username = username;
+        this.password = password;
+    }
 
     public String getId() {
         return id;

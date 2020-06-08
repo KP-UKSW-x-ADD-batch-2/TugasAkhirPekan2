@@ -120,7 +120,7 @@ public class Employee implements Serializable {
         this.salary = salary;
         this.commisionPct = commisionPct;
         this.manager = manager;
-        this.departement = this.departement;
+        this.departement = departement;
     }
     
     public String getId() {
