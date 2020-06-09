@@ -5,6 +5,12 @@
  */
 package views;
 
+import controllers.LoginRegisterController;
+import controllers.icontrollers.ILoginRegisterController;
+import javax.swing.JOptionPane;
+import models.Account;
+import tools.HibernateUtil;
+
 /**
  *
  * @author Yosef Febrianes
@@ -28,13 +34,13 @@ public class RegisterView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        backButton = new javax.swing.JButton();
         registerButton = new javax.swing.JButton();
-        loginButton = new javax.swing.JButton();
-        passwordField = new javax.swing.JPasswordField();
+        confirmPasswordField = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
+        employeeIdField = new javax.swing.JTextField();
         usernameField = new javax.swing.JTextField();
-        usernameField1 = new javax.swing.JTextField();
-        passwordField2 = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -46,30 +52,30 @@ public class RegisterView extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        registerButton.setText("Back");
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 330, 70, 30));
+
+        registerButton.setText("REGISTER");
         registerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, 70, 30));
-
-        loginButton.setText("REGISTER");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 110, 30));
-        jPanel1.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 210, 30));
+        jPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 110, 30));
+        jPanel1.add(confirmPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 210, 30));
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Confirm password :");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 140, 30));
-        jPanel1.add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 210, 30));
-        jPanel1.add(usernameField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 210, 30));
-        jPanel1.add(passwordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 210, 30));
+        jPanel1.add(employeeIdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 210, 30));
+        jPanel1.add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 210, 30));
+        jPanel1.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 210, 30));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -98,8 +104,8 @@ public class RegisterView extends javax.swing.JFrame {
         jLabel5.setText("Employee ID :");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 100, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Yosef Febrianes\\Desktop\\TugasAkhirPekan2\\qaz2.jpg")); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 617, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/views/qaz2.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 617, 370));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,23 +115,41 @@ public class RegisterView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         Loginview lv = new Loginview();
         lv.setVisible(true);
-    }//GEN-LAST:event_registerButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        // TODO add your handling code here:
-        MenuView mv = new MenuView();
-        mv.setVisible(true);
-    }//GEN-LAST:event_loginButtonActionPerformed
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        HibernateUtil sessionFactory = new HibernateUtil();
+        ILoginRegisterController ilrc = new LoginRegisterController(sessionFactory.getSessionFactory());
+//        Account acc = new Account(employeeIdField.getText(), usernameField.getText(), passwordField.getText());
+
+        String a = new String(passwordField.getPassword());
+        String b = new String(confirmPasswordField.getPassword());
+
+        if (a.equals(b)) {
+            JOptionPane.showMessageDialog(null, ilrc.register(employeeIdField.getText(), usernameField.getText(), passwordField.getText()));
+            employeeIdField.setText("");
+            usernameField.setText("");
+            passwordField.setText("");
+            confirmPasswordField.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Password Tidak Cocok");
+            passwordField.setText("");
+            confirmPasswordField.setText("");
+            passwordField.requestFocus();
+        }
+
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,6 +187,9 @@ public class RegisterView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
+    private javax.swing.JPasswordField confirmPasswordField;
+    private javax.swing.JTextField employeeIdField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -171,11 +198,8 @@ public class RegisterView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton loginButton;
     private javax.swing.JPasswordField passwordField;
-    private javax.swing.JPasswordField passwordField2;
     private javax.swing.JButton registerButton;
     private javax.swing.JTextField usernameField;
-    private javax.swing.JTextField usernameField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
  */
 package views;
 
+import controllers.LoginRegisterController;
+import javax.swing.JOptionPane;
 import models.Account;
 import org.hibernate.hql.internal.ast.tree.Statement;
 import tools.HibernateUtil;
@@ -38,6 +40,9 @@ public class Loginview extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,7 +55,7 @@ public class Loginview extends javax.swing.JFrame {
                 loginButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 110, 30));
+        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, 110, 30));
 
         registerButton.setText("REGISTER");
         registerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -58,22 +63,58 @@ public class Loginview extends javax.swing.JFrame {
                 registerButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 110, 30));
-        jPanel1.add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 210, 30));
+        jPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 110, 30));
+        jPanel1.add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 260, 30));
 
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("password");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 70, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, 120, 30));
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("username");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 70, 30));
-        jPanel1.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 210, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 120, 30));
+        jPanel1.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 260, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Yosef Febrianes\\Desktop\\TugasAkhirPekan2\\qaz2.jpg")); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 617, -1));
+        jPanel2.setBackground(new java.awt.Color(21, 24, 54));
+
+        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Welcome !!");
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/views/icons8-account-100.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(69, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(64, 64, 64))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 320, 370));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/views/nebula3.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 470));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,25 +130,32 @@ public class Loginview extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        // TODO add your handling code here:
-        
-        HibernateUtil sessionFactory = new HibernateUtil();
-        Account ac = new Account(usernameField.getText(), passwordField.getText());
-        
-        if (rootPaneCheckingEnabled) {
-            
-        }
-        
-        MenuView mv = new MenuView();
-        mv.setVisible(true);
 
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        MenuView mv = new MenuView();
+        HibernateUtil sessionFactory = new HibernateUtil();
+        Account ac = new Account(usernameField.getText(), passwordField.getPassword() + "");
+        LoginRegisterController lrc = new LoginRegisterController(sessionFactory.getSessionFactory());
+
+        if (lrc.login(usernameField.toString(), passwordField.toString())) {
+
+            mv.setVisible(true);
+            this.dispose();
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "username atau password salah!");
+            usernameField.setText("");
+            passwordField.setText("");
+
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         // TODO add your handling code here:
         RegisterView rv = new RegisterView();
         rv.setVisible(true);
+        this.dispose();;
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
@@ -149,7 +197,10 @@ public class Loginview extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton loginButton;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton registerButton;

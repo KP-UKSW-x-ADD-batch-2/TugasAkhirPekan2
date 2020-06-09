@@ -9,18 +9,19 @@ import models.Account;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import daos.idaos.IAccountDAO;
+import daos.idaos.ILoginRegisterDAO;
+import org.hibernate.Query;
 
 /**
  *
  * @author Yosef Febrianes
  */
-public class AccountDAO implements IAccountDAO{
+public class LoginRegisterDAO implements ILoginRegisterDAO{
     private SessionFactory factory;
     private Session session;
     private Transaction transaction;
     
-    public AccountDAO(SessionFactory factory){
+    public LoginRegisterDAO(SessionFactory factory){
     this.factory = factory;
     }
 
@@ -42,5 +43,24 @@ public class AccountDAO implements IAccountDAO{
             session.close();
         }
         return result;
+    }
+
+    @Override
+    public Account getByUsername(String username) {
+        Account account = null;
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            String hql = "FROM Account WHERE username = :a";
+            Query query = session.createQuery(hql);
+            query.setParameter("a", username);
+            account = (Account) query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return account;
     }
 }

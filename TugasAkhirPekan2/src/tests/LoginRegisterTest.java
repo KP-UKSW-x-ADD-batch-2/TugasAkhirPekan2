@@ -5,32 +5,32 @@
  */
 package tests;
 
-import daos.AccountDAO;
+import daos.LoginRegisterDAO;
 import java.util.Scanner;
 import models.Account;
 import org.hibernate.SessionFactory;
 import tools.HibernateUtil;
-import daos.idaos.IAccountDAO;
+import daos.idaos.ILoginRegisterDAO;
 
 /**
  *
  * @author Yosef Febrianes
  */
-public class RegisterTest {
+public class LoginRegisterTest {
 
     HibernateUtil sessionFactory = new HibernateUtil();
-    IAccountDAO irdao = new AccountDAO(sessionFactory.getSessionFactory());
+    ILoginRegisterDAO irdao = new LoginRegisterDAO(sessionFactory.getSessionFactory());
     Account a = new Account();
     SessionFactory factory = new HibernateUtil().getSessionFactory();
-    AccountDAO adao = new AccountDAO(factory);
+    LoginRegisterDAO lrdao = new LoginRegisterDAO(factory);
 
     public static void main(String[] args) {
-        RegisterTest r = new RegisterTest();
+        LoginRegisterTest r = new LoginRegisterTest();
         Scanner scann = new Scanner(System.in);
         int lanjut = 0;
         do {
-            System.out.println("1 = Add");
-            System.out.println("2 = Add");
+            System.out.println("1 = Register");
+            System.out.println("2 = Get By Username");
             System.out.print("pilih mana? = ");
             int a = scann.nextInt();
 
@@ -39,7 +39,7 @@ public class RegisterTest {
                     r.insert();
                     break;
                 case 2:
-                    r.insert();
+                    r.getByUsername();
                     break;
 
             }
@@ -61,7 +61,19 @@ public class RegisterTest {
         System.out.println("Masukkan password lagi! = ");
         String pl = scann.nextLine();
 
-        Account account = new Account(id, un, pl);
-        System.out.println(adao.insert(account));
+        Account account = new Account(id, un, p);
+        System.out.println(lrdao.insert(account));
+    }
+
+    void getByUsername() {
+        Scanner scann = new Scanner(System.in);
+
+        System.out.println("Masukkan username! = ");
+        String un = scann.nextLine();
+//        System.out.println("Masukkan password! = ");
+//        String p = scann.nextLine();
+        
+        Account acc = lrdao.getByUsername(un);
+        System.out.println(acc.getId() +" - "+ acc.getUsername() +" - "+ acc.getPassword());
     }
 }

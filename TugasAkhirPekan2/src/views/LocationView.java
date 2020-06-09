@@ -445,7 +445,7 @@ public class LocationView extends javax.swing.JFrame {
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         HibernateUtil sessionFactory = new HibernateUtil();
         ILocationController ilc = new LocationController(sessionFactory.getSessionFactory());
-        
+
         JOptionPane.showMessageDialog(null, ilc.update(locationIdField.getText(), streetAddressField.getText(), postalCodeField.getText(), cityField.getText(), stateProvinceField.getText(), countryIdBox.getSelectedItem().toString()));
 
         locationIdField.setText("");
@@ -564,7 +564,8 @@ public class LocationView extends javax.swing.JFrame {
     }//GEN-LAST:event_stateProvinceFieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        MenuView mv = new MenuView();
+        mv.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

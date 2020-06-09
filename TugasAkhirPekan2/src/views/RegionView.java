@@ -30,7 +30,7 @@ public class RegionView extends javax.swing.JFrame {
         initComponents();
         getAll();
     }
-
+    
     void getAll() {
         HibernateUtil sessionFactory = new HibernateUtil();
         IRegionController irc = new RegionController(sessionFactory.getSessionFactory());
@@ -41,12 +41,12 @@ public class RegionView extends javax.swing.JFrame {
         DefaultButtonModel db;
         Object[] baris = {"No", "Region ID", "Region Name"};
         dt = new DefaultTableModel(null, baris);
-
+        
         regionIdField.setEditable(true);
         regionTable.setModel(dt);
         regionIdField.setText("");
         regionNameField.setText("");
-
+        
         try {
             int i = 1;
             for (Region regiong : irdao.getAll()) {
@@ -56,7 +56,7 @@ public class RegionView extends javax.swing.JFrame {
                 String ID = regiong.getId();
                 String NM = regiong.getName();
                 String bt = refreshButton + "";
-
+                
                 String[] data = {NO, ID, NM, bt};
                 dt.addRow(data);
                 i++;
@@ -64,9 +64,9 @@ public class RegionView extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
-
+        
     }
-
+    
     private void search() {
         HibernateUtil sessionFactory = new HibernateUtil();
         IRegionController irc = new RegionController(sessionFactory.getSessionFactory());
@@ -76,25 +76,25 @@ public class RegionView extends javax.swing.JFrame {
 //        Region r = new Region();
         DefaultTableModel dt;
         DefaultButtonModel db;
-
+        
         Object[] baris = {"Region ID", "Region Name"};
         dt = new DefaultTableModel(null, baris);
         regionTable.setModel(dt);
-
+        
         try {
             for (Region regiong : irdao.search(searchField.getText())) {
 //                System.out.println(regiong.getRegionId() + " || " + regiong.getRegionName());
 
                 String ID = regiong.getId();
                 String NM = regiong.getName();
-
+                
                 String[] data = {ID, NM};
                 dt.addRow(data);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
-
+        
     }
 
     /**
@@ -322,7 +322,7 @@ public class RegionView extends javax.swing.JFrame {
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
-
+        
         HibernateUtil sessionFactory = new HibernateUtil();
         IRegionController irc = new RegionController(sessionFactory.getSessionFactory());
         Region region = new Region(regionIdField.getText(), regionNameField.getText());
@@ -339,7 +339,7 @@ public class RegionView extends javax.swing.JFrame {
         HibernateUtil sessionFactory = new HibernateUtil();
         IRegionController irc = new RegionController(sessionFactory.getSessionFactory());
         Region region = new Region(regionIdField.getText(), regionNameField.getText());
-
+        
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(this, "Delete", "Title on Box", dialogButton);
         if (dialogResult == 0) {
@@ -372,16 +372,18 @@ public class RegionView extends javax.swing.JFrame {
         HibernateUtil sessionFactory = new HibernateUtil();
         IRegionController irc = new RegionController(sessionFactory.getSessionFactory());
         Region region = new Region(regionIdField.getText(), regionNameField.getText());
-
+        
         JTable source = (JTable) evt.getSource();
         regionIdField.setEditable(false);
-
+        
         int i = regionTable.getSelectedRow();
         regionIdField.setText(source.getModel().getValueAt(i, 1) + "");
         regionNameField.setText(source.getModel().getValueAt(i, 2) + "");
     }//GEN-LAST:event_regionTableMouseClicked
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        MenuView mv = new MenuView();
+        mv.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
 
