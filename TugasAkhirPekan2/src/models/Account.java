@@ -54,21 +54,16 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public Account(String id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-    }
-    
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
     }
-    
-    public Account(Employee employee, String username, String password) {
-        this.employee = employee;
+
+    public Account(String id, String username, String password) {
+        this.id = id;
         this.username = username;
         this.password = password;
+        this.employee = new Employee(id);
     }
 
     public String getId() {
@@ -127,5 +122,5 @@ public class Account implements Serializable {
     public String toString() {
         return "models.Account[ id=" + id + " ]";
     }
-    
+
 }

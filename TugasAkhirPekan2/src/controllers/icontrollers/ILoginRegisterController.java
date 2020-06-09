@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package daos.idaos;
-
-import models.Account;
+package controllers.icontrollers;
 
 /**
  *
  * @author Yosef Febrianes
  */
-public interface IAccountDAO {
+public interface ILoginRegisterController {
 
-    public boolean insert(Account account);
+    public String register(String id, String username, String password);
+
+    public boolean login(String username, String password);
 }

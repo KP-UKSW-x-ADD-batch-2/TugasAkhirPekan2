@@ -173,6 +173,7 @@ public class EmployeeView extends javax.swing.JFrame {
         jobIdBox = new javax.swing.JComboBox<>();
         departementIdBox = new javax.swing.JComboBox<>();
         managerIdBox = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
@@ -406,6 +407,14 @@ public class EmployeeView extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 11, -1, -1));
+
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Yosef Febrianes\\Downloads\\icons8-exit-sign-46.png")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1289, 640, 70, -1));
 
         refreshButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Yosef Febrianes\\Downloads\\icons8-refresh-26.png")); // NOI18N
         refreshButton.addActionListener(new java.awt.event.ActionListener() {
@@ -721,6 +730,12 @@ public class EmployeeView extends javax.swing.JFrame {
         searchField.setText("");
     }//GEN-LAST:event_searchButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        MenuView mv = new MenuView();
+        mv.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -766,6 +781,7 @@ public class EmployeeView extends javax.swing.JFrame {
     private javax.swing.JTextField firstNameField;
     private javax.swing.JTextField hireDateField;
     private javax.swing.JButton insertButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
