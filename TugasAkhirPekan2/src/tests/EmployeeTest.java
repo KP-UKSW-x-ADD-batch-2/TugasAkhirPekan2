@@ -189,11 +189,10 @@ public class EmployeeTest {
     void search() {
         System.out.println("Masukkan Keyword! = ");
         String id = scann.nextLine();
-        
-        List<Employee> employees = iedao.search(id);
-        for (Employee data : employees) {
-            System.out.println(data.getId() + " " + data.getFirstName() + " " + data.getLastName() + " " + data.getEmail() + " " + data.getPhoneNumber() + " " + data.getHireDate() + " " + data.getJob() + " " + data.getSalary() + " " + data.getCommisionPct() + " " + data.getManager() + " " + data.getDepartement());
-        }
+
+        List<Employee> locations = iedao.search(id);
+        for (Employee data : locations) {
+ System.out.println(data.getId() + " " + data.getFirstName() + " " + data.getLastName() + " " + data.getEmail() + " " + data.getPhoneNumber() + " " + data.getHireDate() + " " + data.getJob() + " " + data.getSalary() + " " + data.getCommisionPct() + " " + data.getManager() + " " + data.getDepartement());       }
     }
     
     void getById() {

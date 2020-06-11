@@ -25,8 +25,6 @@ public class LocationController implements ILocationController {
     public LocationController(SessionFactory factory) {
         ildao = new LocationDAO(factory);
     }
-    
-
 
     @Override
     public List<Location> getAll() {
@@ -35,7 +33,7 @@ public class LocationController implements ILocationController {
 
     @Override
     public List<Location> search(Object keyword) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ildao.search(keyword);
     }
 
     @Override
@@ -56,7 +54,7 @@ public class LocationController implements ILocationController {
 
     @Override
     public String update(String locationId, String streetAddress, String postalCode, String city, String stateProvince, String country) {
-        
+
         Location reg = new Location(locationId, streetAddress, postalCode, city, stateProvince, new Country(country));
         if (ildao.update(reg)) {
             return "Update " + locationId + " success!";
