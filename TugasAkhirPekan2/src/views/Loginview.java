@@ -134,10 +134,11 @@ public class Loginview extends javax.swing.JFrame {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         MenuView mv = new MenuView();
         HibernateUtil sessionFactory = new HibernateUtil();
-        Account ac = new Account(usernameField.getText(), passwordField.getPassword() + "");
         LoginRegisterController lrc = new LoginRegisterController(sessionFactory.getSessionFactory());
-
-        if (lrc.login(usernameField.toString(), passwordField.toString())) {
+        
+        String username = usernameField.toString();
+        
+        if (lrc.login(usernameField.getText(), passwordField.getText())) {
 
             mv.setVisible(true);
             this.dispose();

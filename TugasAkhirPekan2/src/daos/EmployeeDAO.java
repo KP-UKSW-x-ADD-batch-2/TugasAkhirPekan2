@@ -71,12 +71,12 @@ public class EmployeeDAO implements IEmployeeDAO {
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-            String hql = "FROM Employee WHERE id LIKE '%a%' OR name LIKE '%a%'";      //SELECT * FROM `employees` WHERE id LIKE '%s%' OR name LIKE '%s%'
-//            String hql = "FROM Employee WHERE employee = :a";
+            String hql = "FROM Employee WHERE id LIKE :a OR first_name LIKE :a OR last_name LIKE :a OR email LIKE :a OR phone_number LIKE :a OR hire_date LIKE :a OR job LIKE :a OR salary LIKE :a OR commision_pct LIKE :a OR manager LIKE :a OR departement LIKE :a"; //SELECT * FROM `employees` WHERE id LIKE '%s%' OR name LIKE '%s%'
+
             Query query = session.createQuery(hql);
-            query.setParameter("a", keyword);
-            employees = session.createQuery(hql).list();
-//            employees = (Employee) query.list();
+            query.setParameter("a", "%" + keyword.toString() + "%");
+            employees = query.list();
+
         } catch (Exception e) {
             e.printStackTrace();
             if (transaction != null) {

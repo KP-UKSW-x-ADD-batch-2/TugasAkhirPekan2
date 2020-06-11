@@ -38,7 +38,7 @@ public class EmployeeController implements IEmployeeController {
 
     @Override
     public List<Employee> search(Object keyword) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return iedao.search(keyword);
     }
 
     @Override

@@ -88,32 +88,70 @@ public class EmployeeView extends javax.swing.JFrame {
         }
 
     }
+    
+        private void search() {
+        HibernateUtil sessionFactory = new HibernateUtil();
+        IEmployeeController iec = new EmployeeController(sessionFactory.getSessionFactory());
+        Employee employee = new Employee(searchButton.getText());
+
+//        Region r = new Region();
+        DefaultTableModel dt;
+        DefaultButtonModel db;
+
+        Object[] baris = {"No", "Employee ID", "Street Address", "Postal Code", "City", "State Province", "Country ID"};
+        dt = new DefaultTableModel(null, baris);
+        employeeTable.setModel(dt);
+
+        try {
+            for (Employee empliong : iec.search(searchField.getText())) {
+//                System.out.println(regiong.getRegionId() + " || " + regiong.getRegionName());
+
+                String ID = empliong.getId();
+                String FN = empliong.getFirstName();
+                String LN = empliong.getLastName();
+                String E = empliong.getEmail();
+                String PN = empliong.getPhoneNumber();
+                String HD = empliong.getHireDate() + "";
+                String JI = empliong.getJob().getId();
+                String S = empliong.getSalary() + "";
+                String CP = empliong.getCommisionPct() + "";
+                String MI = empliong.getManager().getId();
+                String DI = empliong.getDepartement().getId();
+
+                String[] data = {ID, FN, LN, E, PN, HD, JI, S, CP, MI, DI};
+                dt.addRow(data);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
 
     private void getById() {
-//        HibernateUtil sessionFactory = new HibernateUtil();
-//        IEmployeeController iec = new EmployeeController(sessionFactory.getSessionFactory());
-//
-//        DefaultTableModel dt;
-//        DefaultButtonModel db;
-//        Object[] baris = {"No", "ID", "First Name", "Last Name", "Email", "Phone Number", "Hire Date", "Job", "Salary", "Commision", "Manager", "Departement"};
-//        dt = new DefaultTableModel(null, baris);
-//        employeeTable.setModel(dt);
-//        employeeIdField.setEditable(true);
-//
-//        employeeIdField.setText("");
-//        firstNameField.setText("");
-//        lastNameField.setText("");
-//        emailField.setText("");
-//        phoneNumberField.setText("");
-//        hireDateField.setText("");
-//        jobIdBox.setSelectedItem(null);
-//        salaryField.setText("");
-//        commisionPctField.setText("");
-//        managerIdBox.setSelectedItem(null);
-//        departementIdBox.setSelectedItem(null);
-//
+        HibernateUtil sessionFactory = new HibernateUtil();
+        IEmployeeController iec = new EmployeeController(sessionFactory.getSessionFactory());
+
+        DefaultTableModel dt;
+        DefaultButtonModel db;
+        Object[] baris = {"No", "ID", "First Name", "Last Name", "Email", "Phone Number", "Hire Date", "Job", "Salary", "Commision", "Manager", "Departement"};
+        dt = new DefaultTableModel(null, baris);
+        employeeTable.setModel(dt);
+        employeeIdField.setEditable(true);
+
+        employeeIdField.setText("");
+        firstNameField.setText("");
+        lastNameField.setText("");
+        emailField.setText("");
+        phoneNumberField.setText("");
+        hireDateField.setText("");
+        jobIdBox.setSelectedItem(null);
+        salaryField.setText("");
+        commisionPctField.setText("");
+        managerIdBox.setSelectedItem(null);
+        departementIdBox.setSelectedItem(null);
+
 //        try {
-//                iec.getById(employeeIdField.getText());
+//                iec.getById(employeeIdField.);
 ////                System.out.println(regiong.getRegionId() + " || " + regiong.getRegionName());
 //        Employee empliong = new Employee(id, firstName, lastName, email, phoneNumber, hireDate, job, ABORT, TOP_ALIGNMENT, manager, departement);
 //
@@ -135,7 +173,7 @@ public class EmployeeView extends javax.swing.JFrame {
 //        } catch (Exception e) {
 //            JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
 //        }
-
+//
     }
 
     /**
@@ -555,9 +593,9 @@ public class EmployeeView extends javax.swing.JFrame {
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(this, "Delete", "Title on Box", dialogButton);
         if (dialogResult == 0) {
-            Employee location = new Employee(employeeIdField.getText());
+            Employee employee = new Employee(employeeIdField.getText());
 
-            JOptionPane.showMessageDialog(null, iec.delete(location.getId()));
+            JOptionPane.showMessageDialog(null, iec.delete(employee.getId()));
 
             employeeIdField.setText("");
             firstNameField.setText("");
@@ -726,7 +764,7 @@ public class EmployeeView extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        getById();
+        search();
         searchField.setText("");
     }//GEN-LAST:event_searchButtonActionPerformed
 

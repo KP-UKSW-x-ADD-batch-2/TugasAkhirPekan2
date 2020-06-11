@@ -71,12 +71,12 @@ public class LocationDAO implements ILocationDAO {
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-            String hql = "FROM Location WHERE id LIKE '%a%' OR name LIKE '%a%'";      //SELECT * FROM `locations` WHERE id LIKE '%s%' OR name LIKE '%s%'
-//            String hql = "FROM Location WHERE location = :a";
+            String hql = "FROM Location WHERE id LIKE :a OR street_address LIKE :a OR postal_code LIKE :a OR city LIKE :a OR state_province LIKE :a OR country LIKE :a"; //SELECT * FROM `regions` WHERE id LIKE '%s%' OR name LIKE '%s%'
+
             Query query = session.createQuery(hql);
-            query.setParameter("a", keyword);
-            locations = session.createQuery(hql).list();
-//            locations = (Location) query.list();
+            query.setParameter("a", "%" + keyword.toString() + "%");
+            locations = query.list();
+
         } catch (Exception e) {
             e.printStackTrace();
             if (transaction != null) {
